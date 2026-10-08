@@ -1,0 +1,6 @@
+{
+  "name": "NetProbe Sentinel - Inline Subnet & Port Scanner",
+  "description": "Production-grade standalone Python network utility and console for hotspot subnet discovery, rapid asynchronous port verification (RDP, SSH, MCP endpoints), and inline pipeable streaming.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

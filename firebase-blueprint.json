@@ -1,0 +1,83 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User preferences and security settings",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "defaultZone": { "type": "string" },
+        "defaultPorts": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid", "email"]
+    },
+    "ScanHistory": {
+      "title": "ScanHistory",
+      "description": "Saved network scan execution records",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "cidr": { "type": "string" },
+        "ports": { "type": "string" },
+        "liveHostsCount": { "type": "number" },
+        "durationSeconds": { "type": "number" },
+        "hosts": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "cidr", "createdAt"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Multi-turn Gemini chat messages",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "model", "system"] },
+        "content": { "type": "string" },
+        "modelUsed": { "type": "string" },
+        "groundingMetadata": { "type": "string" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["userId", "role", "content", "timestamp"]
+    },
+    "AudioTranscription": {
+      "title": "AudioTranscription",
+      "description": "Voice audio transcription logs",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "transcript": { "type": "string" },
+        "durationSeconds": { "type": "number" },
+        "model": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "transcript", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile document keyed by auth UID"
+    },
+    "/users/{userId}/scans/{scanId}": {
+      "schema": "ScanHistory",
+      "description": "User's saved network scan history"
+    },
+    "/users/{userId}/messages/{messageId}": {
+      "schema": "ChatMessage",
+      "description": "User's Gemini assistant conversations"
+    },
+    "/users/{userId}/transcriptions/{transcriptionId}": {
+      "schema": "AudioTranscription",
+      "description": "User's voice speech-to-text transcriptions"
+    }
+  }
+}

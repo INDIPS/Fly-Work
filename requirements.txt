@@ -1,0 +1,12 @@
+# NetProbe Sentinel - Requirements & Setup
+# ==============================================================================
+# The core utility (net_probe.py) runs on Python 3.8+ STANDARD LIBRARY with ZERO
+# external dependencies required.
+# ==============================================================================
+
+# OPTIONAL ENHANCEMENTS:
+# 1. Rich: For colorful terminal tables, progress bars, and syntax rendering
+rich>=13.0.0
+
+# 2. Scapy: (Optional) for raw packet crafting, SYN scanning, or ARP sweeps on Linux
+scapy>=2.5.0
